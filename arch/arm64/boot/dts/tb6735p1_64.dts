@@ -1,0 +1,46 @@
+
+/dts-v1/;
+
+/include/ "mt6735.dtsi"
+
+/ {
+  memory@00000000 {
+		device_type = "memory";
+		reg = <0 0x40000000 0 0x1F000000>;
+	};
+
+	bus {
+		compatible = "simple-bus";
+		#address-cells = <1>;
+		#size-cells = <1>;
+		ranges = <0 0 0 0xffffffff>;
+
+		I2C3@0x1100F000 {
+			bq24296@6b {
+				compatible = "bq24296";
+				reg = <0x6b>;
+			};
+		};
+
+		MTKFB@5e200000 {
+			compatible = "mediatek,MTKFB";
+			reg = <0x5F000000 0x1000000>;
+		};
+		MT_SOC_DL1_PCM@0x11220000 {
+			compatible = "mediatek,mt_soc_pcm_dl1";
+			reg = <0x11220000 0x1000>;
+			interrupts = <0 144 0x8>;
+			audclk-gpio = <143 0>;
+			audmiso-gpio = <144 0>;
+			audmosi-gpio = <145 0>;
+			vowclk-gpio = <148 0>;
+			extspkamp-gpio = <129 0>;
+			extspkamp_2-gpio = <128 0>;
+			rcvspkswitch-gpio = <120 0>;						
+			i2s1clk-gpio = <135 0>;
+			i2s1dat-gpio = <137 0>;
+			i2s1mclk-gpio = <134 0>;
+			i2s1ws-gpio = <136 0>;
+		};
+  };
+};
